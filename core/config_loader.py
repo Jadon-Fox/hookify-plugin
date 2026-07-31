@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 """Configuration loader for hookify plugin.
 
-Loads hookify.*.local.md from absolute ~/.claude/ first so rules fire when
-agent cwd is a project tree without local .claude/hookify files. Optional
-project .claude/ overrides same rule names.
+Loads and parses .claude/hookify.*.local.md files.
 """
 
 import os
@@ -197,23 +195,8 @@ def extract_frontmatter(content: str) -> tuple[Dict[str, Any], str]:
     return frontmatter, message
 
 
-def _hookify_rule_globs() -> List[str]:
-    """Absolute home rules first; project cwd last (name override)."""
-    globs: List[str] = []
-    home = os.path.expanduser('~')
-    globs.append(os.path.join(home, '.claude', 'hookify.*.local.md'))
-    claude_cfg = os.environ.get('CLAUDE_CONFIG_DIR')
-    if claude_cfg:
-        globs.append(os.path.join(claude_cfg, 'hookify.*.local.md'))
-    grok_home = os.environ.get('GROK_HOME') or os.path.join(home, '.grok')
-    globs.append(os.path.join(grok_home, 'hookify', 'hookify.*.local.md'))
-    globs.append(os.path.join(grok_home, 'hooks', 'hookify.*.local.md'))
-    globs.append(os.path.join(os.getcwd(), '.claude', 'hookify.*.local.md'))
-    return globs
-
-
 def load_rules(event: Optional[str] = None) -> List[Rule]:
-    """Load enabled hookify rules from ~/.claude (+ optional project override).
+    """Load all hookify rules from .claude directory.
 
     Args:
         event: Optional event filter ("bash", "file", "stop", etc.)
@@ -221,47 +204,37 @@ def load_rules(event: Optional[str] = None) -> List[Rule]:
     Returns:
         List of enabled Rule objects matching the event.
     """
-    rules: List[Rule] = []
-    seen_names: Dict[str, int] = {}
+    rules = []
 
-    files: List[str] = []
-    for pattern in _hookify_rule_globs():
-        files.extend(glob.glob(pattern))
-    seen_paths = set()
-    unique_files: List[str] = []
+    # Find all hookify.*.local.md files
+    pattern = os.path.join('.claude', 'hookify.*.local.md')
+    files = glob.glob(pattern)
+
     for file_path in files:
-        ap = os.path.abspath(file_path)
-        if ap in seen_paths:
-            continue
-        seen_paths.add(ap)
-        unique_files.append(ap)
-
-    for file_path in unique_files:
         try:
             rule = load_rule_file(file_path)
             if not rule:
                 continue
 
+            # Filter by event if specified
             if event:
                 if rule.event != 'all' and rule.event != event:
                     continue
 
-            if not rule.enabled:
-                continue
-
-            if rule.name in seen_names:
-                rules[seen_names[rule.name]] = rule
-            else:
-                seen_names[rule.name] = len(rules)
+            # Only include enabled rules
+            if rule.enabled:
                 rules.append(rule)
 
         except (IOError, OSError, PermissionError) as e:
+            # File I/O errors - log and continue
             print(f"Warning: Failed to read {file_path}: {e}", file=sys.stderr)
             continue
         except (ValueError, KeyError, AttributeError, TypeError) as e:
+            # Parsing errors - log and continue
             print(f"Warning: Failed to parse {file_path}: {e}", file=sys.stderr)
             continue
         except Exception as e:
+            # Unexpected errors - log with type details
             print(f"Warning: Unexpected error loading {file_path} ({type(e).__name__}): {e}", file=sys.stderr)
             continue
 

@@ -1,19 +1,13 @@
 {
   "name": "hookify",
-  "description": "Create and enforce hookify.*.local.md rules. Loads ~/.claude rules from any project cwd (Ms-2080 / Grok Build host fix).",
+  "description": "Easily create hooks to prevent unwanted behaviors (pure upstream Hookify). Install with --trust so hooks run. Add rules after install via ~/.claude/hookify.*.local.md or /hookify.",
   "category": "security",
   "source": {
     "source": "url",
     "url": "https://github.com/Jadon-Fox/hookify-plugin.git",
-    "sha": "e763778a42bd9a5da67704c9017886639508c848"
+    "sha": "0000000000000000000000000000000000000000"
   },
-  "homepage": "https://github.com/Jadon-Fox/hookify-plugin",
-  "keywords": [
-    "hooks",
-    "hookify",
-    "security",
-    "guardrails",
-    "grok"
-  ],
-  "author": "Jadon Fox"
+  "homepage": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/hookify",
+  "keywords": ["hooks", "hookify", "guardrails"],
+  "author": "Anthropic (mirror for xAI pin)"
 }

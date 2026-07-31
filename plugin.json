@@ -1,19 +1,12 @@
 {
   "name": "hookify",
-  "version": "1.0.1",
-  "description": "User-configurable hooks from hookify.*.local.md. Host build loads ~/.claude rules first so project cwd (e.g. training_orchestrator) still enforces rules.",
+  "version": "1.0.0",
+  "description": "Easily create hooks to prevent unwanted behaviors by analyzing conversation patterns",
   "author": {
-    "name": "Jadon Fox",
-    "url": "https://github.com/Jadon-Fox"
+    "name": "Anthropic",
+    "url": "https://github.com/anthropics"
   },
-  "homepage": "https://github.com/Jadon-Fox/hookify-plugin",
+  "homepage": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/hookify",
   "license": "MIT",
-  "keywords": [
-    "hooks",
-    "hookify",
-    "security",
-    "guardrails",
-    "grok",
-    "claude"
-  ]
+  "keywords": ["hooks", "hookify", "guardrails"]
 }
