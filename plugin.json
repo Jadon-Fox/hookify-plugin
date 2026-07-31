@@ -1,0 +1,19 @@
+{
+  "name": "hookify",
+  "version": "1.0.1",
+  "description": "User-configurable hooks from hookify.*.local.md. Host build loads ~/.claude rules first so project cwd (e.g. training_orchestrator) still enforces rules.",
+  "author": {
+    "name": "Jadon Fox",
+    "url": "https://github.com/Jadon-Fox"
+  },
+  "homepage": "https://github.com/Jadon-Fox/hookify-plugin",
+  "license": "MIT",
+  "keywords": [
+    "hooks",
+    "hookify",
+    "security",
+    "guardrails",
+    "grok",
+    "claude"
+  ]
+}

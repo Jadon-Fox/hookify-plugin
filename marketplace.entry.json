@@ -1,0 +1,13 @@
+{
+  "name": "hookify",
+  "description": "Create and enforce hookify.*.local.md rules. Loads ~/.claude rules from any project cwd (Ms-2080 / Grok Build host fix).",
+  "category": "security",
+  "source": {
+    "source": "url",
+    "url": "https://github.com/Jadon-Fox/hookify-plugin.git",
+    "sha": "0000000000000000000000000000000000000000"
+  },
+  "homepage": "https://github.com/Jadon-Fox/hookify-plugin",
+  "keywords": ["hooks", "hookify", "security", "guardrails", "grok"],
+  "author": "Jadon Fox"
+}

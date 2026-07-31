@@ -1,0 +1,9 @@
+{
+  "name": "hookify",
+  "version": "1.0.1",
+  "description": "User-configurable hooks from hookify.*.local.md with absolute ~/.claude rule load for Grok Build.",
+  "author": {
+    "name": "Jadon Fox",
+    "url": "https://github.com/Jadon-Fox"
+  }
+}
