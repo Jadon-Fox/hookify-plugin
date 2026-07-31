@@ -5,9 +5,13 @@
   "source": {
     "source": "url",
     "url": "https://github.com/Jadon-Fox/hookify-plugin.git",
-    "sha": "0000000000000000000000000000000000000000"
+    "sha": "a6c581f541a929b3d44232821a1cbc50b0379ad8"
   },
   "homepage": "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/hookify",
-  "keywords": ["hooks", "hookify", "guardrails"],
+  "keywords": [
+    "hooks",
+    "hookify",
+    "guardrails"
+  ],
   "author": "Anthropic (mirror for xAI pin)"
 }
