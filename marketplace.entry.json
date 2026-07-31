@@ -5,9 +5,15 @@
   "source": {
     "source": "url",
     "url": "https://github.com/Jadon-Fox/hookify-plugin.git",
-    "sha": "0000000000000000000000000000000000000000"
+    "sha": "e763778a42bd9a5da67704c9017886639508c848"
   },
   "homepage": "https://github.com/Jadon-Fox/hookify-plugin",
-  "keywords": ["hooks", "hookify", "security", "guardrails", "grok"],
+  "keywords": [
+    "hooks",
+    "hookify",
+    "security",
+    "guardrails",
+    "grok"
+  ],
   "author": "Jadon Fox"
 }
